@@ -2,7 +2,7 @@ type User {
   id: ID! @unique
   email: String @unique
   name: String!
-  streams: [Stream!]!
+  streams: [Stream!]
 }
 
 type Stream {
