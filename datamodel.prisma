@@ -1,4 +1,17 @@
 type User {
   id: ID! @unique
+  email: String @unique
   name: String!
+  streams: [Stream!]!
+}
+
+type Stream {
+  id: ID! @unique
+  title: String!
+  description: String
+  createdAt: DateTime!
+  finishedAt: DateTime
+  category: String
+  language: String
+  author: User
 }
