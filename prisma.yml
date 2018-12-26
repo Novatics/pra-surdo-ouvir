@@ -1,0 +1,6 @@
+endpoint: https://eu1.prisma.sh/flavio-alves/pra-surdo-ouvir/dev
+datamodel: datamodel.prisma
+
+generate:
+  - generator: javascript-client
+    output: ./generated/prisma-client/

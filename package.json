@@ -1,0 +1,23 @@
+{
+  "name": "pra-surdo-ouvir",
+  "version": "1.0.0",
+  "description": "Speech recognizer platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Novatics/pra-surdo-ouvir.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Novatics/pra-surdo-ouvir/issues"
+  },
+  "homepage": "https://github.com/Novatics/pra-surdo-ouvir#readme",
+  "dependencies": {
+    "prisma-client-lib": "^1.23.2"
+  }
+}
