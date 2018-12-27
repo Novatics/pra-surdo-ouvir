@@ -16,8 +16,12 @@ const resolvers = {
   },
   Mutation: {
     createStream(root, args, context) {
+      console.log({ args });
       return context.prisma.createStream({
         title: args.title,
+        description: args.description,
+        category: args.category,
+        language: args.language,
         author: {
           connect: { id: args.userId }
         }

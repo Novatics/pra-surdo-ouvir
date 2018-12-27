@@ -7,7 +7,14 @@ type Query {
 }
 
 type Mutation {
-  createStream(title: String!, userId: ID!): Stream
+  createStream(
+    title: String!
+    description: String
+    finishedAt: DateTime
+    category: String
+    language: String
+    userId: String!
+  ): Stream
   createUser(name: String!, email: String!): User
 }
 
