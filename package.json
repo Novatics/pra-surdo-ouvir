@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Novatics/pra-surdo-ouvir#readme",
   "dependencies": {
+    "graphql-yoga": "^1.16.9",
     "prisma-client-lib": "^1.23.2"
   }
 }
