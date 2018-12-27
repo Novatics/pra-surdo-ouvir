@@ -1,0 +1,15 @@
+{
+  "name": "pra-surdo-ouvir",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "https://github.com/Novatics/pra-surdo-ouvir.git",
+  "author": "Levino <levino@novatics.com.br>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && yarn && yarn run build"
+  }
+}
