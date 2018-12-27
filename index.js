@@ -1,42 +1,60 @@
 const { prisma } = require("./generated/prisma-client");
+const { GraphQLServer } = require("graphql-yoga");
 
-// A `main` function so that we can use async/await
-async function main() {
-  // Create a new user with a new post
-  const newUser = await prisma.createUser({
-    name: "Flavio",
-    email: "flavio@novatics.com.br",
-    streams: {
-      create: [
-        {
-          title: "Join us for GraphQL Conf in 2019",
-          description: "Just a first description",
-          category: "TECH",
-          language: "pt-br"
-        },
-        {
-          title: "Subscribe to GraphQL Weekly for GraphQL news",
-          description: "A second description",
-          category: "OTHER",
-          language: "pt-br"
-        }
-      ]
+const resolvers = {
+  Query: {
+    streams(root, args, context) {
+      return context.prisma.streams();
+    },
+    stream(root, args, context) {
+      return context.prisma.stream({ id: args.streamId });
+    },
+    streamsByUser(root, args, context) {
+      return context.prisma
+        .user({
+          id: args.userId
+        })
+        .streams();
     }
-  });
-  console.log(`Created new user: ${newUser.name} (ID: ${newUser.id})`);
+  },
+  Mutation: {
+    createStream(root, args, context) {
+      return context.prisma.createStream({
+        title: args.title,
+        author: {
+          connect: { id: args.userId }
+        }
+      });
+    },
+    createUser(root, args, context) {
+      return context.prisma.createUser({ name: args.name, email: args.email });
+    }
+  },
+  User: {
+    streams(root, args, context) {
+      return context.prisma
+        .user({
+          id: root.id
+        })
+        .streams();
+    }
+  },
+  Stream: {
+    author(root, args, context) {
+      return context.prisma
+        .stream({
+          id: root.id
+        })
+        .author();
+    }
+  }
+};
 
-  // Read all users from the database and print them to the console
-  const allUsers = await prisma.users();
-  console.log(allUsers);
-
-  const allStreams = await prisma.streams();
-  console.log(allStreams);
-
-  // Read the previously created user from the database and print their posts to the console
-  const streamsByUser = await prisma
-    .user({ email: "flavio@novatics.com.br" })
-    .streams();
-  console.log(`All posts by that user: ${JSON.stringify(streamsByUser)}`);
-}
-
-main().catch(e => console.error(e));
+const server = new GraphQLServer({
+  typeDefs: "./schema.graphql",
+  resolvers,
+  context: {
+    prisma
+  }
+});
+server.start(() => console.log("Server is running on http://localhost:4000"));
