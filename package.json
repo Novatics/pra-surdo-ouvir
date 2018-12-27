@@ -1,0 +1,31 @@
+{
+  "name": "pra-surdo-ouvir",
+  "version": "1.0.0",
+  "description": "Speech recognizer platform",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Novatics/pra-surdo-ouvir.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Novatics/pra-surdo-ouvir/issues"
+  },
+  "homepage": "https://github.com/Novatics/pra-surdo-ouvir#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
+    "socket.io-stream": "^0.9.1",
+    "wav": "^1.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
