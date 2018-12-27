@@ -2,11 +2,11 @@ import React from 'react';
 
 import { Link } from "@reach/router"
 
-export default function CreateStream() {
-  return (
+export default function StreamWatcher({ id }) {
+  return(
     <div>
       <Link to="/">Home</Link>{" "}
-      Create stream route
+      Stream {id} comendo solta!
     </div>
   )
 }
