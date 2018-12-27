@@ -5,10 +5,13 @@
   "dependencies": {
     "@reach/router": "^1.2.1",
     "antd": "^3.11.6",
+    "media-recorder-stream": "^2.1.1",
+    "node-record-lpcm16": "^0.3.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-scripts": "2.1.2",
-    "socket.io-client": "^2.2.0"
+    "socket.io-client": "^2.2.0",
+    "socket.io-stream": "^0.9.1"
   },
   "scripts": {
     "start": "react-scripts start",
