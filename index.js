@@ -4,22 +4,20 @@ const { prisma } = require("./generated/prisma-client");
 async function main() {
   // Create a new user with a new post
   const newUser = await prisma.createUser({
-    name: "Bob",
-    email: "bob@prisma.io",
+    name: "Flavio",
+    email: "flavio@novatics.com.br",
     streams: {
       create: [
         {
           title: "Join us for GraphQL Conf in 2019",
           description: "Just a first description",
-          createdAt: new Date(),
           category: "TECH",
           language: "pt-br"
         },
         {
           title: "Subscribe to GraphQL Weekly for GraphQL news",
           description: "A second description",
-          createdAt: new Date(),
-          category: "TECH",
+          category: "OTHER",
           language: "pt-br"
         }
       ]
@@ -31,8 +29,14 @@ async function main() {
   const allUsers = await prisma.users();
   console.log(allUsers);
 
-  const allPosts = await prisma.posts();
-  console.log(allPosts);
+  const allStreams = await prisma.streams();
+  console.log(allStreams);
+
+  // Read the previously created user from the database and print their posts to the console
+  const streamsByUser = await prisma
+    .user({ email: "flavio@novatics.com.br" })
+    .streams();
+  console.log(`All posts by that user: ${JSON.stringify(streamsByUser)}`);
 }
 
 main().catch(e => console.error(e));
