@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import { Link } from "@reach/router"
 
-export default function StreamRecorder() {
-  return (
-    <div>
+class StreamRecorder extends Component {
+  componentWillUnmount() {
+    // TODO - Here we should call to kill this stream
+  }
+
+  render() {
+    return (
+      <div>
       <Link to="/">Home</Link>{" "}
       Create stream route
-    </div>
-  )
+      </div>
+    )
+  }
 }
+
+export default StreamRecorder;
