@@ -8,8 +8,7 @@
     "yarn": "^1.9.4"
   },
   "scripts": {
-    "start": "babel-node server/src/index.js",
-    "start:dev": "nodemon --exec babel-node server/src/index.js",
+    "start": "nodemon --exec babel-node server/src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,11 +21,11 @@
   },
   "homepage": "https://github.com/Novatics/pra-surdo-ouvir#readme",
   "dependencies": {
+    "@babel/cli": "^7.2.3",
     "graphql-yoga": "^1.16.9",
     "prisma-client-lib": "^1.23.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.2.3",
