@@ -1,0 +1,37 @@
+scalar DateTime
+
+type Query {
+  streams: [Stream!]!
+  stream(streamId: ID!): Stream
+  streamsByUser(userId: ID!): [Stream!]!
+}
+
+type Mutation {
+  createStream(
+    title: String!
+    description: String
+    finishedAt: DateTime
+    category: String
+    language: String
+    userId: String!
+  ): Stream
+  createUser(name: String!, email: String!): User
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  streams: [Stream!]
+}
+
+type Stream {
+  id: ID!
+  title: String!
+  description: String
+  createdAt: DateTime!
+  finishedAt: DateTime
+  category: String
+  language: String
+  author: User
+}
