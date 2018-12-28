@@ -1,6 +1,0 @@
-# files
-.DS_Store
-.env
-
-# dependencies
-/node_modules

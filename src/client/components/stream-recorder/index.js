@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Link } from "@reach/router"
+import { Link } from '@reach/router';
 
 class StreamRecorder extends Component {
   componentWillUnmount() {
@@ -10,10 +10,11 @@ class StreamRecorder extends Component {
   render() {
     return (
       <div>
-      <Link to="/">Home</Link>{" "}
-      Create stream route
+        <Link to="/">Home</Link>
+        {' '}
+Create stream route
       </div>
-    )
+    );
   }
 }
 

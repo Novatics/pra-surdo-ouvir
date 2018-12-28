@@ -1,15 +1,55 @@
 {
   "name": "pra-surdo-ouvir",
   "version": "0.1.0",
-  "main": "index.js",
+  "description": "Speech recognizer platform",
+  "main": "src/server/api/index.js",
   "repository": "https://github.com/Novatics/pra-surdo-ouvir.git",
-  "author": "Levino <levino@novatics.com.br>",
+  "author": "Novatics Team <hello@novatics.com.br>",
   "license": "MIT",
-  "dependencies": {
-    "express": "^4.16.4"
-  },
   "scripts": {
-    "start": "node index.js",
-    "heroku-postbuild": "cd client && yarn && yarn run build"
+    "build": "webpack --mode production",
+    "start": "npm run build && node src/server/api/index.js",
+    "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
+    "server": "nodemon src/server/index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "express": "^4.16.4",
+    "graphql-yoga": "^1.16.9",
+    "prisma-client-lib": "^1.23.2",
+    "@reach/router": "^1.2.1",
+    "antd": "^3.11.6",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-scripts": "2.1.2",
+    "socket.io-client": "^2.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.0",
+    "babel-loader": "^8.0.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "clean-webpack-plugin": "^0.1.19",
+    "concurrently": "^4.0.0",
+    "css-loader": "^1.0.0",
+    "eslint": "^5.0.0",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "nodemon": "^1.17.3",
+    "prettier": "^1.15.3",
+    "style-loader": "^0.23.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.3"
   }
 }

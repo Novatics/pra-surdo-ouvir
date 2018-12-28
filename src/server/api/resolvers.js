@@ -9,10 +9,10 @@ const resolvers = {
     streamsByUser(root, args, context) {
       return context.prisma
         .user({
-          id: args.userId
+          id: args.userId,
         })
         .streams();
-    }
+    },
   },
   Mutation: {
     createStream(root, args, context) {
@@ -23,32 +23,32 @@ const resolvers = {
         category: args.category,
         language: args.language,
         author: {
-          connect: { id: args.userId }
-        }
+          connect: { id: args.userId },
+        },
       });
     },
     createUser(root, args, context) {
       return context.prisma.createUser({ name: args.name, email: args.email });
-    }
+    },
   },
   User: {
     streams(root, args, context) {
       return context.prisma
         .user({
-          id: root.id
+          id: root.id,
         })
         .streams();
-    }
+    },
   },
   Stream: {
     author(root, args, context) {
       return context.prisma
         .stream({
-          id: root.id
+          id: root.id,
         })
         .author();
-    }
-  }
+    },
+  },
 };
 
-export { resolvers };
+module.exports = resolvers;
