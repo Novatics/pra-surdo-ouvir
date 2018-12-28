@@ -1,11 +1,11 @@
 import React from 'react';
-
-import StreamCard from '../stream-card';
+import PropTypes from 'prop-types';
 
 import Col from 'antd/lib/col';
 import Row from 'antd/lib/row';
+import StreamCard from '../stream-card';
 
-export default function StreamCardList({ listofStreams }) {
+function StreamCardList({ listofStreams }) {
   return (
     <div style={{ background: '#ECECEC', padding: '30px' }}>
       <Row gutter={16}>
@@ -21,5 +21,11 @@ export default function StreamCardList({ listofStreams }) {
         ))}
       </Row>
     </div>
-  )
+  );
 }
+
+StreamCardList.propTypes = {
+  listofStreams: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+export default StreamCardList;
