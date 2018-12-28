@@ -1,21 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
+
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
 
 import './App.css';
 
 import StreamCardList from './components/stream-card-list';
 
-class App extends Component {
-  render() {
-    const listofStreams = [
-      { id: 0, title: 'Joao CS 1.6', description: 'Headshot sem parar' },
-      { id: 1, title: 'Lolzim do sucesso', description: 'Ganka mid com Singed' },
-      { id: 2, title: 'Dota 2.0', description: 'Carregando os frag' },
-      { id: 3, title: 'Igreja Asa Sul', description: 'Venha conhecer a palavra verdadeira' },
-      { id: 4, title: 'Gama Church', description: 'Igreja no estado do Gama, depois do shopping' },
-    ];
-
-    return <StreamCardList listofStreams={listofStreams} />;
+const GET_STREAMS = gql`
+  {
+    streams {
+      id
+      title
+      description
+    }
   }
-}
+`;
 
-export default App;
+
+export default function App() {
+  return (
+    <Query query={GET_STREAMS}>
+      {({ loading, error, data }) => {
+        if (loading) return 'Loading...';
+        if (error) return `Error! ${error.message}`;
+
+        return <StreamCardList listofStreams={data.streams} />;
+      }}
+    </Query>
+  );
+}
