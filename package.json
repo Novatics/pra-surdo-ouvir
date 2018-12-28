@@ -7,9 +7,9 @@
   "author": "Novatics Team <hello@novatics.com.br>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack --mode production --env.SOCKET_URL=http://localhost:5000",
     "start": "npm run build && node src/index.js",
-    "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
+    "client": "webpack-dev-server --mode development --devtool inline-source-map --hot --env.SOCKET_URL=http://localhost:5000",
     "server": "nodemon src/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
