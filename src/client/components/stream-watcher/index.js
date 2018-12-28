@@ -1,20 +1,37 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from '@reach/router';
-import io from 'socket.io-client';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
 
-export default function StreamWatcher({ id }) {
-  const socket = io('http://localhost');
+const GET_STREAM = gql`
+  query Stream($streamId: ID!) {
+    stream(streamId: $streamId) {
+      title
+      description
+    }
+  }`;
 
-  socket.on(id, function (from, msg) {
-    return (
-      <div> msg </div>
-    )
-  });
- 
-  return(
-    <div>
-      <Link to="/">Home</Link>{" "}
-      Stream {id} comendo solta!
-    </div>
-  )
+function StreamWatcher({ id }) {
+  return (
+    <Query query={GET_STREAM} variables={{ streamId: id }}>
+      {({ loading, error, data }) => {
+        if (loading) return 'Loading...';
+        if (error) return `Error! ${error.message}`;
+
+        return (
+          <div>
+            <Link to="/">Home</Link>
+            Stream {data.stream.title} comendo solta!
+          </div>
+        );
+      }}
+    </Query>
+  );
 }
+
+StreamWatcher.propTypes = {
+  id: PropTypes.string.isRequired,
+};
+
+export default StreamWatcher;
