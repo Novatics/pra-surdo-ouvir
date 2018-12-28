@@ -14,9 +14,7 @@ class App extends Component {
       { id: 4, title: 'Gama Church', description: 'Igreja no estado do Gama, depois do shopping' },
     ];
 
-    return (
-      <StreamCardList listofStreams={listofStreams} />
-    )
+    return <StreamCardList listofStreams={listofStreams} />;
   }
 }
 

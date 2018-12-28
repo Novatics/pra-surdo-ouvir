@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { Link } from "@reach/router"
+import { Link } from '@reach/router';
 import io from 'socket.io-client';
 
 export default function StreamWatcher({ id }) {
@@ -11,7 +10,7 @@ export default function StreamWatcher({ id }) {
       <div> msg </div>
     )
   });
-
+ 
   return(
     <div>
       <Link to="/">Home</Link>{" "}
