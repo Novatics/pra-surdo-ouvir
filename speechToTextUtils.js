@@ -12,7 +12,14 @@ module.exports = {
      */
     startRecognitionStream: function (client, GCSServiceAccount, request) {
         if(!speechClient) {
-            speechClient = new speech.SpeechClient(); // Creates a client
+          if(!GCSServiceAccount) {
+            speechClient = new speech.SpeechClient();
+          } else {
+            speechClient = new speech.SpeechClient({
+                projectId: 'Insert your project ID here',
+                credentials: GCSServiceAccount
+            }); // Creates a client
+          }
         }
         recognizeStream = speechClient.streamingRecognize(request)
             .on('error', (err) => {

@@ -7,15 +7,21 @@ class StreamRecorder extends Component {
 
   state = {
     streamText: '',
+    isRecording: false,
   }
 
   startStream = () => {
+    this.setState({isRecording: true});
     AudioStreamer.initRecording(data => {
-      //console.log(data.results[0].alternatives[0].transcript)
       this.setState({streamText: data.results[0].alternatives[0].transcript});
     }, error => {
       console.log(error)
     })
+  }
+
+  stopStream = () => {
+    this.setState({isRecording: false});
+    AudioStreamer.stopRecording();
   }
 
   componentDidMount() {
@@ -27,13 +33,18 @@ class StreamRecorder extends Component {
   }
 
   render() {
+    const { isRecording, streamText } = this.state;
     return (
       <div>
       <Link to="/">Home</Link>{" "}
       Create stream route
-      <Button onClick={this.startStream} type="primary">Record</Button>
+      <Button onClick={ isRecording ? this.stopStream : this.startStream } 
+        type="primary"
+      >
+        { isRecording ? 'Encerrar' : 'Gravar' }
+      </Button>
       <br></br>
-      <span>{this.state.streamText}</span>
+      <span>{streamText}</span>
       </div>
     )
   }
